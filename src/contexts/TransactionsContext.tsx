@@ -25,30 +25,30 @@ interface TransactionContextType{
 }
 
 interface TrasactionsProviderProps{
-    children: ReactNode;
+    children: ReactNode; 
 }
 
-export const TransactionsContext = createContext({} as TransactionContextType);
+export const TransactionsContext = createContext({} as TransactionContextType); //criando contexto com a tipagem TransactionContextType
 
-export function TransactionsProvider({children}: TrasactionsProviderProps){
+export function TransactionsProvider({children}: TrasactionsProviderProps){ 
 
-    const [transactions, setTransactions] = useState<Transactions[]>([])
+    const [transactions, setTransactions] = useState<Transactions[]>([]) //useState recebe um array de transactions
 
-    async function fetchTransactions(query?: string){
-       const response = await api.get('/transactions',{
+    async function fetchTransactions(query?: string){      //função assincrona de buscar transações
+       const response = await api.get('/transactions',{  
         params: {
-            _sort: "createdAt",
-            _order: "desc",
-            q: query,
+            _sort: "createdAt",  
+            _order: "desc",  //ordem decrescente de transações
+            q: query,  //para fazer o busca tem que adicionar um q(query)param na url, exemplo: transactions?q=agiotagem
         }
        })
-            setTransactions(response.data)
+            setTransactions(response.data)  //salva o novo valor dentro das transactions no useState
     }
 
-    const createTransactions = useCallback( async (data: CreateTransactionsInput) => {
-        const { description, category, price, type } = data;
+    const createTransactions = useCallback( async (data: CreateTransactionsInput) => {  //constante de criar transações
+        const { description, category, price, type } = data;  //desestrutura o data pegando esses valores
 
-        const response =  await api.post('transactions', {
+        const response =  await api.post('transactions', {    //puxando a api do axios e adicionando(post) uma nova transação com os seguintes valores
             description,
             category,
             price,
@@ -56,7 +56,7 @@ export function TransactionsProvider({children}: TrasactionsProviderProps){
             createdAt: new Date(),
         })
 
-        setTransactions(state => [response.data,...state]) 
+        setTransactions(state => [response.data,...state]) //pega o estado atual e adiciona mais uma transação
     }, 
         []
     )

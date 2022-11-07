@@ -11,7 +11,7 @@ import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 
-const newTransactionFormSchema = z.object({
+const newTransactionFormSchema = z.object({   //tipagem do zod para validação
     description: z.string(),
     price: z.number(),
     category: z.string(),
@@ -33,16 +33,16 @@ export function NewTransactionModal() {
         }
     })
 
-    async function handleCreateNewTransaction(data: NewTransactionFormInputs) {
-        const { description, category, price, type } = data;
+    async function handleCreateNewTransaction(data: NewTransactionFormInputs) {  //evento de criar nova transaction
+        const { description, category, price, type } = data;   //desestrutura os valores de data
 
-        await createTransactions({
+        await createTransactions({          //espera o contexto de criar transaction com os valores abaixo
             description,
             category,
             price,
             type,
         })
-        reset();
+        reset();   //reseta os campos que foram preenchidos
     }
 
     return (
@@ -66,7 +66,7 @@ export function NewTransactionModal() {
                         type="number"
                         placeholder="Preço"
                         required
-                        {...register("price", { valueAsNumber: true })}
+                        {...register("price", { valueAsNumber: true })}  //o valor desse input é do tipo number
                     />
                     <input
                         type="text"
@@ -94,8 +94,6 @@ export function NewTransactionModal() {
                             )
                         }}
                         />
-
-
 
                     <button type="submit" disabled={isSubmitting}>Cadastrar</button>
                 </form>

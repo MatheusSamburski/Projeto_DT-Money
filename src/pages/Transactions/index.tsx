@@ -22,18 +22,18 @@ export function Transactions() {
 
                 <TransactionsTable>
                     <tbody>
-                        {transactions.map(transactions => {
+                        {transactions.map(transactions => {       //map para percorrer as transactions e trazer seus valores
                             return (
-                            <tr key={transactions.id}>
-                                <td width="50%">{transactions.description}</td>
+                            <tr key={transactions.id}>     {/*retorna o id único de cada transaction*/}
+                                <td width="50%">{transactions.description}</td>  {/*retorna a descrição de cada transaction*/}
                                 <td>
-                                    <PriceHighLight variant={transactions.type}>
-                                        {transactions.type === "outcome"  && "- "}
-                                        {priceFormatter.format(transactions.price)}
+                                    <PriceHighLight variant={transactions.type}> 
+                                        {transactions.type === "outcome"  && "- "}   {/*retorna o tipo de cada transaction*/}
+                                        {priceFormatter.format(transactions.price)}  {/*retorna preço de cada transaction*/} 
                                     </PriceHighLight>
                                 </td>
-                                <td>{transactions.category}</td>
-                                <td>{dateFormatter.format(new Date(transactions.createdAt))}</td>
+                                <td>{transactions.category}</td> {/*retorna a categoria de cada transaction*/}
+                                <td>{dateFormatter.format(new Date(transactions.createdAt))}</td> {/*retorna a data de cada transaction*/}
                             </tr>
                         )})}
                     </tbody>

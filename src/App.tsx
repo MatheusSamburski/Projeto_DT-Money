@@ -6,11 +6,11 @@ import { defaultTheme } from './styles/themes/default'
 
 export function App() {
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <GlobalStyle />
-      <TransactionsProvider>
+    <ThemeProvider theme={defaultTheme}>   
+      <GlobalStyle />                                
+      <TransactionsProvider>          {/*contexto que compartilha valores com as transactions e seus filhos */}
         <Transactions />
-      </TransactionsProvider>
+      </TransactionsProvider>         {/*contexto que compartilha valores com as transactions e seus filhos */}
     </ThemeProvider>
   )
 }

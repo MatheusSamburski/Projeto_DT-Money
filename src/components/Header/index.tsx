@@ -10,7 +10,7 @@ export function Header(){
             <HeaderContent>
                 <img src={logoImg}  />
                 
-                <Dialog.Root>
+               <Dialog.Root>        {/* criando um novo modal para adicionar as transactions */}
                     <Dialog.Trigger asChild>
                         <NewTransactionButton>Nova Transação</NewTransactionButton>
                     </Dialog.Trigger>

@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useContextSelector } from "use-context-selector";
 import { TransactionsContext } from "../../../../contexts/TransactionsContext";
 
-const searchFromSchema = z.object({
+const searchFromSchema = z.object({ //tipagem do zod para validação 
     query: z.string(),
 })
 
@@ -23,7 +23,7 @@ export function SearchForm(){
     })
 
     async function handleSearchTransactions(data: SearchFormInputs){
-        await fetchTransactions(data.query)
+        await fetchTransactions(data.query)   //para buscar transações entrou na função fetchTransactions acessou o data pegando o valor de query
     }
 
     return (
